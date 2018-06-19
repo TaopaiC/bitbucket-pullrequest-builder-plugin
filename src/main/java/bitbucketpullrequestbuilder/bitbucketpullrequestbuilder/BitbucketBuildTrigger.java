@@ -207,7 +207,7 @@ public class BitbucketBuildTrigger extends Trigger<Job<?, ?>> {
         return retrieveScheduleJob(this.job).scheduleBuild2(0,
                 new CauseAction(cause),
                 new ParametersAction(new ArrayList(values.values())),
-                new RevisionParameterAction(cause.getSourceCommitHash()));
+                new RevisionParameterAction(cause.getSourceCommitHash(), "git@bitbucket.org:" + cause.getRepositoryOwner() + "/" + cause.getRepositoryName() + ".git"));
     }
 
     private void cancelPreviousJobsInQueueThatMatch(@Nonnull BitbucketCause bitbucketCause) {
